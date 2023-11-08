@@ -25,10 +25,10 @@ def move_forward():
 
 def move_backwards():
     for _ in range(steps):
-        kit.stepper1.onestep(direction=stepper.BACKWARD)
-        kit.stepper2.onestep(direction=stepper.BACKWARD)
-        kit2.stepper1.onestep(direction=stepper.BACKWARD)
-        kit2.stepper2.onestep(direction=stepper.BACKWARD)
+        kit.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit2.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit2.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
         #time.sleep(0.01)  
     kit.stepper1.release()
     kit.stepper2.release()
@@ -37,11 +37,11 @@ def move_backwards():
 
 def move_right():
     for _ in range(steps):
-        kit.stepper1.onestep()
-        kit.stepper2.onestep(direction=stepper.BACKWARD)
-        kit2.stepper1.onestep(direction=stepper.BACKWARD)
-        kit2.stepper2.onestep()
-        time.sleep(0.01)
+        kit.stepper1.onestep(style=stepper.INTERLEAVE)
+        kit.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit2.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit2.stepper2.onestep(style=stepper.INTERLEAVE)
+        #time.sleep(0.01)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
@@ -49,11 +49,11 @@ def move_right():
 
 def move_left():
     for _ in range(steps):
-        kit.stepper1.onestep(direction=stepper.BACKWARD)
-        kit.stepper2.onestep()
-        kit2.stepper1.onestep()
-        kit2.stepper2.onestep(direction=stepper.BACKWARD)
-        time.sleep(0.01)
+        kit.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit.stepper2.onestep(style=stepper.INTERLEAVE)
+        kit2.stepper1.onestep(style=stepper.INTERLEAVE)
+        kit2.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        #time.sleep(0.01)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
