@@ -7,7 +7,7 @@ from sshkeyboard import listen_keyboard
 kit = MotorKit(address=0x60)
 kit2 = MotorKit(address=0x61)
 
-steps=400
+steps=300
 
 
 def move_forward():

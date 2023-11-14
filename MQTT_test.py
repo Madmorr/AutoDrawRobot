@@ -13,7 +13,7 @@ kit2 = MotorKit(address=0x61)
 client = mqtt.Client()
 client.connect("localhost", 1883, 60)  # Replace BROKER_IP with your broker's IP address
 
-steps=100
+steps=300
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
@@ -46,10 +46,10 @@ client.on_disconnect = on_disconnect
 
 def move_forward():
     for _ in range(steps):
-        kit.stepper1.onestep(style=stepper.INTERLEAVE)
-        kit.stepper2.onestep(style=stepper.INTERLEAVE)
-        kit2.stepper1.onestep(style=stepper.INTERLEAVE)
-        kit2.stepper2.onestep(style=stepper.INTERLEAVE)
+        kit.stepper1.onestep(style=stepper.DOUBLE)
+        kit.stepper2.onestep(style=stepper.DOUBLE)
+        kit2.stepper1.onestep(style=stepper.DOUBLE)
+        kit2.stepper2.onestep(style=stepper.DOUBLE)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
@@ -57,10 +57,10 @@ def move_forward():
 
 def move_backwards():
     for _ in range(steps):
-        kit.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit2.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit2.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit.stepper1.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit.stepper2.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit2.stepper1.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit2.stepper2.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
@@ -68,10 +68,10 @@ def move_backwards():
 
 def move_right():
     for _ in range(steps):
-        kit.stepper1.onestep(style=stepper.INTERLEAVE)
-        kit.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit2.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit2.stepper2.onestep(style=stepper.INTERLEAVE)
+        kit.stepper1.onestep(style=stepper.DOUBLE)
+        kit.stepper2.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit2.stepper1.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit2.stepper2.onestep(style=stepper.DOUBLE)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
@@ -79,10 +79,10 @@ def move_right():
 
 def move_left():
     for _ in range(steps):
-        kit.stepper1.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
-        kit.stepper2.onestep(style=stepper.INTERLEAVE)
-        kit2.stepper1.onestep(style=stepper.INTERLEAVE)
-        kit2.stepper2.onestep(style=stepper.INTERLEAVE, direction=stepper.BACKWARD)
+        kit.stepper1.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
+        kit.stepper2.onestep(style=stepper.DOUBLE)
+        kit2.stepper1.onestep(style=stepper.DOUBLE)
+        kit2.stepper2.onestep(style=stepper.DOUBLE, direction=stepper.BACKWARD)
     kit.stepper1.release()
     kit.stepper2.release()
     kit2.stepper1.release()
